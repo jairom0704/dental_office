@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        <template id="cisc_odontologia_assets_backend" name="cisc_odontologia assets" inherit_id="web.assets_backend">
+            <xpath expr="." position="inside">
+                <script type="text/javascript" src="/cisc_odontologia/static/src/js/odontograma.js"></script>
+            </xpath>
+        </template>
+    
+    </data>
+</openerp>

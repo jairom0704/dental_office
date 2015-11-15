@@ -1,0 +1,14 @@
+<?php
+
+class code_odontologico extends \Eloquent {
+	protected $fillable = [
+		'activo',
+		'aplicacara',
+		'aplicadiente',
+		'codigo',
+		'descripcion',
+		'name',
+	];
+
+	protected $perPage = 10;
+}

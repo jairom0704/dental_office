@@ -1,0 +1,139 @@
+<openerp>
+    <data>
+
+   <record model="ir.module.category" id="module_category_admision">
+       <field name="name">ADMISIÓN</field>
+       <field name="description">Admisión</field>
+       <field name="sequence">1</field>
+   </record>
+   
+   <record id="admision_operator" model="res.groups">
+    	<field name="name">Operador</field>
+        <field name="comment">Operador</field>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('medical_history_submenu'),ref('patient_consultation_submenu'),ref('tratamiento_submenu')])]"/>
+   		<field name="category_id" ref="module_category_admision"/>
+   </record>
+   
+   <record id="admision_operator_responsible" model="res.groups">
+        <field name="name">Responsable</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_admision"/>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('medical_history_submenu'),ref('patient_consultation_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="implied_ids" eval="[(4, ref('admision_operator'))]"/>
+        <field name="comment">Responsable del area</field>
+    </record>
+    
+    <record id="admision_operator_responsible2" model="res.groups">
+        <field name="name">Configuración</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_admision"/>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('medical_history_submenu'),ref('patient_consultation_submenu'),ref('configuracion_odontologia_menu'),ref('menu_action_res_users_odontologia'),ref('menu_action_res_users_odontologia1')])]"/>
+        <field name="implied_ids" eval="[(4, ref('admision_operator_responsible'))]"/>
+        <field name="comment">Responsable del area más configuraciones</field>
+    </record>
+   
+   
+   <record id="login_students" model="res.groups">
+    	<field name="name">Tratamientos-Estudiantes</field>
+        <field name="comment">Tratamientos-Estudiantes</field>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('patient_consultation_submenu'),ref('tratamiento_submenu')])]"/>
+   </record>
+   
+   <record id="login_teaching" model="res.groups">
+    	<field name="name">Tratamientos-Docentes</field>
+        <field name="comment">Tratamientos-Docentes</field>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('medical_history_submenu'),ref('patient_consultation_submenu'),ref('tratamiento_submenu')])]"/>
+   </record>  
+   
+	<record model="ir.module.category" id="module_category_diagnostico">
+       <field name="name">DIAGNÓSTICO</field>
+       <field name="description">Diagnóstico</field>
+       <field name="sequence">2</field>
+   </record>
+   
+   <record id="diagnostico_operator" model="res.groups">
+    	<field name="name">Operador</field>
+        <field name="comment">Operador</field>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('menu_odontograma_js'),ref('odontogramadetails_submenu'),ref('patient_consultation_submenu'),ref('codeodontologicos_submenu')])]"/>
+   		<field name="category_id" ref="module_category_diagnostico"/>
+   </record>
+     
+	
+	<record id="diagnostico_operator_responsible" model="res.groups">
+        <field name="name">Responsable</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_diagnostico"/>
+        <field name="menu_access" eval="[(6,0,[ref('medical_history_menu'),ref('menu_odontograma_js'),ref('odontogramadetails_submenu'),ref('patient_consultation_submenu'),ref('codeodontologicos_submenu')])]"/>
+        <field name="implied_ids" eval="[(4, ref('diagnostico_operator'))]"/>
+        <field name="comment">Responsable del area</field>
+    </record>
+    
+    
+    <record model="ir.module.category" id="module_category_especialidad">
+       <field name="name">ESPECIALIDADES</field>
+       <field name="description">Especialidades</field>
+       <field name="sequence">3</field>
+   </record>
+   
+   
+   <record id="especialidad_operatoriapb" model="res.groups">
+        <field name="name">Operatoria PB</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_operatoriapb_submenu1'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Operatoria PB</field>
+    </record>
+    
+    
+     <record id="especialidad_ciguria" model="res.groups">
+        <field name="name">Cirugía PB</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_cirugiapb_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Cirugía PB</field>
+    </record>
+    
+     <record id="especialidad_clinica" model="res.groups">
+        <field name="name">Clinica Integral</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_clinica_submenuu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Clinica Integral</field>
+    </record>
+    
+     <record id="especialidad_odonto" model="res.groups">
+        <field name="name">Odontopediatria</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_odontopediatria_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Odontopediatria</field>
+    </record>
+    
+     <record id="especialidad_ortodoncia" model="res.groups">
+        <field name="name">Ortodoncia</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_ortodoncia_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Ortodoncia</field>
+    </record>
+    
+     <record id="especialidad_operatoriapa" model="res.groups">
+        <field name="name">Operatoria PA</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_operatoriapb_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Operatoria PA</field>
+    </record>
+    
+     <record id="especialidad_ciguriapa" model="res.groups">
+        <field name="name">Cirugía PA</field>
+        <field name="users" eval="[(4, ref('base.user_root'))]"/>
+        <field name="category_id" ref="module_category_especialidad"/>
+        <field name="menu_access" eval="[(6,0,[ref('especialidad_odontologia_menu'),ref('menu_odontograma_js'),ref('patient_consultation_cirugiapa_submenu'),ref('tratamiento_submenu')])]"/>
+        <field name="comment">Cirugía PA</field>
+    </record>
+    
+
+    
+ </data>
+</openerp>

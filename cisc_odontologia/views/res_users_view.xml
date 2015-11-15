@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+    
+    <record id="view_users_odontologia_context_form" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                	<header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('signup_valid', '!=', True)]}">
+                        <p attrs="{'invisible': [('state', '!=', 'active')]}">
+                            <b>A password reset has been requested for this user. An email containing the following link has been sent:</b>
+                        </p>
+                        <p attrs="{'invisible': [('state', '!=', 'new')]}">
+                            <b>An invitation email containing the following subscription link has been sent:</b>
+                        </p>
+                        <p><field class="oe_inline" name="signup_url" widget="url"/></p>
+                        <field name="signup_valid" invisible="1"/>
+                    </div>
+                    <sheet>
+      					<field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+      					<div>
+      						<button string="Send Reset Password Instructions" class="oe_link" type="object" name="action_reset_password" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        	<button string="Send an Invitation Email" class="oe_link" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('state', '!=', 'new')]}"/>
+      					</div>
+                        <div>
+                        	<button string="Change Password" type="action" name="%(base.change_password_wizard_action)d" class="oe_link" help="Change the user password." />
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <field name="email" invisible="1"/>
+                            <field name="student" invisible="1"/>
+                            <field name="teaching" invisible="1"/>
+                            <field name="is_normal" invisible="1"/>
+                            <label for="login" class="oe_edit_only" string="Dirección de correo electrónico" />
+                            <h2><field name="login" on_change="on_change_login(login)"/></h2>
+                            <group col="4">
+	                            <field name="code" attrs="{'invisible': [('student', '=', False),('teaching', '=', True)], 'required': [('student', '=', True),('teaching', '=', False)]}" />
+                            	<field name="cedula" />
+                            	<field name="active"/>
+                            </group>                           
+                        </div>                     
+                    </sheet>
+                </form>
+            </field>
+        </record>
+     
+	<record id="view_users_odontologia_form" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                	 <header>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+                    <div class="oe_form_box_info oe_text_center" attrs="{'invisible': [('signup_valid', '!=', True)]}">
+                        <p attrs="{'invisible': [('state', '!=', 'active')]}">
+                            <b>A password reset has been requested for this user. An email containing the following link has been sent:</b>
+                        </p>
+                        <p attrs="{'invisible': [('state', '!=', 'new')]}">
+                            <b>An invitation email containing the following subscription link has been sent:</b>
+                        </p>
+                        <p><field class="oe_inline" name="signup_url" widget="url"/></p>
+                        <field name="signup_valid" invisible="1"/>
+                    </div>
+                    <sheet>
+                        <field name="image" widget='image' class="oe_avatar oe_left" options='{"preview_image": "image_medium"}'/>
+                        <div>
+                        	<button string="Send Reset Password Instructions" class="oe_link" type="object" name="action_reset_password" attrs="{'invisible': [('state', '!=', 'active')]}"/>
+                        	<button string="Send an Invitation Email" class="oe_link" type="object" name="action_reset_password" context="{'create_user': 1}" attrs="{'invisible': [('state', '!=', 'new')]}"/>
+                        </div>
+                        <div>
+                        	<button string="Change Password" type="action" name="%(base.change_password_wizard_action)d" class="oe_link" help="Change the user password." />
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name"/></h1>
+                            <field name="email" invisible="1"/>
+                            <field name="student" invisible="1"/>
+                            <field name="teaching" invisible="1"/>
+                            <field name="is_normal" invisible="1"/>
+                            <label for="login" class="oe_edit_only" string="Dirección de correo electrónico" />
+                            <h2><field name="login" on_change="on_change_login(login)"/></h2>
+                            <group  col="4">
+	                            <field name="code" attrs="{'invisible': ['|', ('is_normal', '=', True), '&amp;',('student', '=', False),('teaching', '=', True)], 'required': [('student', '=', True),('teaching', '=', False)]}" />
+                            	 <field name="cedula" />
+                                <field name="active"/>
+                            </group>
+
+                        </div>
+                        <notebook colspan="4">
+                            <page string="Access Rights" >
+                                <group string="Allowed Companies" groups="base.group_multi_company">
+                                    <field name="company_ids" nolabel="1" widget="many2many_tags"/>
+                                </group>
+                                <group col="4">
+                                    <field name="groups_id"/>
+                                </group>
+                            </page>
+                            <page string="Preferences">
+                                <group>
+                                    <group string="Localization" name="preferences">
+                                        <field name="lang"/>
+                                        <field name="tz"/>
+                                    </group>
+                                    <group string="Menus Customization" groups="base.group_no_one">
+                                        <field name="action_id"/>
+                                    </group>
+                                </group>
+                                <group string="Messaging and Social" name="messaging">
+                                    <field name="signature"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_users_odontologia_tree" model="ir.ui.view">
+            <field name="name">res.users.tree</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <tree string="Users">
+                    <field name="name"/>
+                    <field name="login"/>
+                    <field name="lang"/>
+                    <field name="is_normal" invisible="1"/>
+                    <field name="login_date"/>
+                </tree>
+            </field>
+        </record>
+                
+        <!-- Estudiantes -->
+         <record id="action_res_users_odontologia" model="ir.actions.act_window">
+            <field name="name">Estudiantes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="context">{'student': True}</field>
+            <field name="domain">[('student', '=', True)]</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="search_view_id" ref="base.view_users_search"/>
+        </record>
+        
+        <record id="action_res_users_odontologia_view1" model="ir.actions.act_window.view">
+            <field eval="15" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="act_window_id" ref="action_res_users_odontologia"/>
+        </record>
+        
+        <record id="action_res_users_odontologia_view2" model="ir.actions.act_window.view">
+            <field eval="22" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_users_odontologia_form"/>
+            <field name="act_window_id" ref="action_res_users_odontologia"/>
+        </record>
+        
+        
+        <menuitem action="action_res_users_odontologia" id="menu_action_res_users_odontologia" parent="configuracion_odontologia_menu"/>
+        
+        
+        <!-- docentes -->
+         <record id="action_res_users_odontologia1" model="ir.actions.act_window">
+            <field name="name">Docentes</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="context">{'teaching': True}</field>
+            <field name="domain">[('teaching', '=', True)]</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="search_view_id" ref="base.view_users_search"/>
+        </record>
+        
+        <record id="action_res_users_odontologia1_view1" model="ir.actions.act_window.view">
+            <field eval="15" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="act_window_id" ref="action_res_users_odontologia1"/>
+        </record>
+        
+        <record id="action_res_users_odontologia1_view2" model="ir.actions.act_window.view">
+            <field eval="22" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_users_odontologia_form"/>
+            <field name="act_window_id" ref="action_res_users_odontologia1"/>
+        </record>
+        
+        
+        <menuitem action="action_res_users_odontologia1" id="menu_action_res_users_odontologia1" parent="configuracion_odontologia_menu"/>
+        
+        
+         <!-- usuarios normales -->
+         <record id="action_res_users_odontologia3" model="ir.actions.act_window">
+            <field name="name">Administrativos</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.users</field>
+            <field name="view_type">form</field>
+            <field name="context">{'is_normal': True}</field>
+            <field name="domain">[('is_normal', '=', True)]</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="search_view_id" ref="base.view_users_search"/>
+        </record>
+        
+        <record id="action_res_users_odontologia3_view1" model="ir.actions.act_window.view">
+            <field eval="15" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_users_odontologia_tree"/>
+            <field name="act_window_id" ref="action_res_users_odontologia3"/>
+        </record>
+        
+        <record id="action_res_users_odontologia3_view2" model="ir.actions.act_window.view">
+            <field eval="22" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_users_odontologia_form"/>
+            <field name="act_window_id" ref="action_res_users_odontologia3"/>
+        </record>
+        
+        
+        <menuitem action="action_res_users_odontologia3" id="menu_action_res_users_odontologia11" parent="configuracion_odontologia_menu"/>
+</data>
+</openerp>
+        

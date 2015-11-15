@@ -1,0 +1,102 @@
+
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body {
+  padding: 20px;
+  text-align: left;
+}
+
+.tabs {
+  width: 100%;
+  float: none;
+  list-style: none;
+  position: relative;
+  margin: 80px 0 0 10px;
+  text-align: left;
+}
+.tabs li {
+  float: left;
+  display: block;
+}
+.tabs input[type="radio"] {
+  position: absolute;
+  top: -9999px;
+  left: -9999px;
+}
+.tabs label {
+  display: block;
+  padding: 14px 21px;
+  border-radius: 2px 2px 0 0;
+  font-size: 1rem;
+  font-weight: normal;
+  background: #eee;
+  color: #999;
+  cursor: pointer;
+  position: relative;
+  top: 5px;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid #ccc;
+  border-bottom:0;
+}
+.tabs label:hover {
+  background: #f5f5f5;
+  color: #333;
+}
+.tabs .tab-content {
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 1em;
+  line-height: 25px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  left: 0;
+  background: #fff;
+  border: 1px solid #ccc;
+}
+.tabs [id^="tab"]:checked + label {
+  top: 6px;
+  background: #fff;
+  color: #333;
+  z-index: 222;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+  display: block;
+}
+
+.tabs:after {
+   content: " "; /* Older browser do not support empty content */
+   visibility: hidden;
+   display: block;
+   height: 0;
+   clear: both;
+}
+
+input, select, textarea
+{
+  padding: 5px 10px;
+}
+
+#observaciones
+{
+  width: 50%;
+  height: 150px;
+  border: 1px solid #aaa;
+}
+
+.tab-content li
+{
+  width: 100%;
+  float: none;  
+}

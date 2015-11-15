@@ -1,0 +1,23 @@
+-
+Output of dpkg --get-selections | grep php5
+
+
+apt-get install php5 libapache2-mod-php5
+apt-get install php5-pgsql
+apt-get install php5-mcrypt
+sudo php5enmod mcrypt
+sudo a2enmod rewrite
+sudo service apache2 restart
+
+
+
+----------------------------------- apache2.conf  *** None*** a todos
+<Directory />
+	Options FollowSymLinks
+	AllowOverride All
+	Require all denied
+</Directory>
+
+select * from codeodontologicos
+
+insert into code_odontologico(name,aplicacara,aplicadiente,codigo,activo, descripcion) values('prueba1', True, True,'001',True, 'prueba descripcion');

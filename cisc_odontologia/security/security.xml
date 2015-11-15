@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">
+		
+		<record id="portal_read_odontogramadetails_students" model="ir.rule">
+            <field name="name">read access on odontogramadetails student</field>
+            <field name="model_id" ref="cisc_odontologia.model_odontogramadetails"/>
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_students'))]"/>
+           	<field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+    
+    <record id="portal_read_odontogramadetails_teaching" model="ir.rule">
+            <field name="name">read access on odontogramadetails teaching</field>
+            <field name="model_id" ref="cisc_odontologia.model_odontogramadetails" />
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_teaching'))]"/>
+           	<field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+    
+		<record id="portal_read_patient_consultation_students" model="ir.rule">
+            <field name="name">read access on patient consult student</field>
+            <field name="model_id" ref="cisc_odontologia.model_patient_consultation"/>
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_students'))]"/>
+            <field name="domain_force">[('student_id','child_of',[user.id])]</field>
+           	<field eval="0" name="perm_unlink"/>
+            <field eval="0" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+ 
+ 	<record id="portal_read_patient_consultation_teaching" model="ir.rule">
+            <field name="name">read access on patient consult teaching</field>
+            <field name="model_id" ref="cisc_odontologia.model_patient_consultation" />
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_teaching'))]"/>
+            <field name="domain_force">[('teaching_id','child_of',[user.id])]</field>
+           	<field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+    
+    
+    <record id="portal_read_tratamiento_students" model="ir.rule">
+            <field name="name">read access on tratamiento student</field>
+            <field name="model_id" ref="cisc_odontologia.model_tratamiento"/>
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_students'))]"/>
+            <field name="domain_force">[('studentl_id','child_of',[user.id])]</field>
+           	<field eval="0" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+  
+    <record id="portal_read_tratamiento_teaching" model="ir.rule">
+            <field name="name">read access on tratamiento teaching</field>
+            <field name="model_id" ref="cisc_odontologia.model_tratamiento" />
+            <field name="groups" eval="[(4, ref('cisc_odontologia.login_teaching'))]"/>
+            <field name="domain_force">[('teaching_id','child_of',[user.id])]</field>
+           	<field eval="1" name="perm_unlink"/>
+            <field eval="1" name="perm_write"/>
+            <field eval="1" name="perm_read"/>
+            <field eval="0" name="perm_create"/>
+    </record>
+
+    </data>
+</openerp>

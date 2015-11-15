@@ -1,0 +1,17 @@
+<?php
+
+class Diagnostico extends \Eloquent {
+	protected $fillable = [
+		'diagnostico',
+		'diagnostico_texto',
+		'paciente_id',
+	];
+
+	protected $perPage = 10;
+
+
+	public function paciente()
+	{
+		return $this->belongsTo('Paciente')->select(array('id', 'nombre', 'cedula'));
+	}
+}

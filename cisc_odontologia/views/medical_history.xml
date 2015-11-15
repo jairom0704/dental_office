@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+    
+      <record id="view_medical_history_tree" model="ir.ui.view">
+            <field name="name">medical.history.tree</field>
+            <field name="model">medicalhistories</field>
+            <field name="arch" type="xml">
+                <tree string="Historial clínico">
+                    <field name="number" />
+                    <field name="name"/>
+                    <field name="cedula"/>
+                    <field name="age"/>
+                 </tree>
+            </field>
+        </record>
+        
+     
+      <record id="view_medical_history_form" model="ir.ui.view">
+            <field name="name">medical.history.form</field>
+            <field name="model">medicalhistories</field>
+            <field name="arch" type="xml">
+                <form string="Historial clínico">
+                   <sheet>
+                    <h1>
+                        <label string="Historial Clínico " />
+                        <field name="number" class="oe_inline" readonly="1"/>
+                    </h1>
+                    <group string="Información paciente">
+                    	<group colspan="4" >
+                    		<field name="name" />
+                    	</group>
+                        <group colspan="4" col="4">
+                            <field name="cedula"/>
+                            <field name="fecha_nacimiento" placeholder="dd/mm/aaaa"/>
+                            <field name="age" />
+                            <field name="sex" />
+                            <field name="date_registration" />
+                        </group>
+                        <group colspan="4" string="Notas adicionales">
+                        	<field nolabel="1" name="note" />
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="HISTORICO DE CONSULTAS">
+                            <field name="consultation_ids" > 
+                            <tree>
+                        		<field name="number_consult" />
+                        		<field name="motive" />
+                        		<field name="date_consult" />
+                        		<field name="state" /> 
+                        	</tree>
+                        	<from>
+                        		<field name="number_consult" />
+                        		<field name="motive" />
+                        		<field name="date_consult" />
+                        		<field name="state" /> 
+                        	</from>
+                        	</field>
+                        </page>
+                        <page string="ANTECEDENTES PERSONALES">
+                        			<group colspan="4" col="6">
+		                        		<field name="alergia_antibiotico" />
+		                        		<field name="alergia_anestesia" />
+		                        		<field name="hemorragias" />
+		                        		<field name="sida" />
+		                        		<field name="tuberculosis" />
+		                        		<field name="asma" />
+		                        		<field name="diabetes" />
+		                        		<field name="hipertension" />
+		                        		<field name="cardiaca" />
+		                        		<field name="otros" />
+		                        	</group>
+		                        	<group colspan="4">
+		                        		<field nolabel="1" name="note1" />
+		                        	</group>
+                        		</page>
+                    </notebook>
+                </sheet>
+              </form>
+            </field>
+        </record>
+    
+     <record id="view_medical_history_filter" model="ir.ui.view">
+            <field name="name">medical.history.select</field>
+            <field name="model">medicalhistories</field>
+            <field name="arch" type="xml">
+                <search string="Busqueda de historial clínico">
+                    <field name="number" />
+                    <field name="name" />
+                    <field name="cedula" />
+               </search>
+            </field>
+        </record>
+        
+    <record id="action_medical_history" model="ir.actions.act_window">
+            <field name="name">Historial Clínico</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">medicalhistories</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_medical_history_filter"/>
+        </record>
+
+	<menuitem id="odontologia_menu" name="Odontología" parent="" sequence="1"/>
+	<menuitem id="medical_history_menu" name="Odontología" parent="odontologia_menu" sequence="1"/>
+	<menuitem id="configuracion_odontologia_menu" name="Configuraciones" parent="odontologia_menu" sequence="3"/>
+	<menuitem id="especialidad_odontologia_menu" name="Especialidades" parent="odontologia_menu" sequence="2"/>
+	<menuitem action="action_medical_history" id="medical_history_submenu" parent="medical_history_menu" sequence="1"/>
+
+  </data>
+</openerp>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="1">        
+        <record id="seq_type_medical_history" model="ir.sequence.type">
+            <field name="name">Historial Clinico</field>
+            <field name="code">medical.history</field>
+        </record>
+
+        <record id="seq_medical_history" model="ir.sequence">
+            <field name="name">Historial Clinico</field>
+            <field name="code">medical.history</field>
+            <field name="prefix">HC</field>
+            <field name="padding">6</field>
+            <field name="company_id" eval="False"/>
+        </record>
+        
+        <record id="seq_type_patient_consultation" model="ir.sequence.type">
+            <field name="name">Consulta</field>
+            <field name="code">patient.consultation</field>
+        </record>
+
+        <record id="seq_patient_consultation" model="ir.sequence">
+            <field name="name">Consulta</field>
+            <field name="code">patient.consultation</field>
+            <field name="prefix">C</field>
+            <field name="padding">8</field>
+            <field name="company_id" eval="False"/>
+        </record>
+    </data>
+</openerp>
